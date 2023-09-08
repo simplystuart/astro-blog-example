@@ -1,0 +1,25 @@
+---
+import Card from '../../components/Card.astro';
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths({ paginate }) {
+  const blog = await getCollection("blog");
+  return paginate(blog, { pageSize: 10 });
+}
+
+const { page } = Astro.props;
+---
+
+<Layout title="Posts page {page.currentPage}">
+  <main>
+    <h1>Posts</h1>
+		<ul role="list" class="link-card-grid">
+      {page.data.map((post) => (
+        <Card
+          href={`/posts/${post.slug}`}
+          title={post.data.title}
+          body={post.data.blurb} />
+      ))}
+    </ul>
+</Layout>

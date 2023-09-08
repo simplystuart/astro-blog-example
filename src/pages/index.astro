@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+---
+
+<Layout title="Hello">
+	<main>
+		<h1>Hello</h1>
+		<ul role="list" class="link-card-grid">
+			<Card
+				href="/blog/1"
+				title="Posts"
+				body="Read the latest from the blog."
+			/>
+		</ul>
+	</main>
+</Layout>
